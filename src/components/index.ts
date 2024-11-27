@@ -37,6 +37,7 @@ export { default as ListBox } from "./Form/ListBox";
 export { default as MultiSelect } from "./Form/MultiSelect";
 export { default as RadioButton } from "./Form/RadioButton";
 export { default as SelectButton } from "./Form/SelectButton";
+export { default as InputCellPhone } from "./Form/InputCellPhone";
 
 // Loading:
 export { default as Loading } from "./Loading";

@@ -69,8 +69,17 @@ function InputMask({
   }, [countrySelected])
 
   useEffect(() => {
-    setCountrySelected(COUNTRIES?.find(c => c.iso2 === 'br') || null)
-  }, [COUNTRIES])
+
+    if (!COUNTRIES) return;
+
+    if (lang === 'pt') {
+      setCountrySelected(COUNTRIES?.find(c => c.iso2 === 'br') || null)
+    } else if (lang === "es") {
+      setCountrySelected(COUNTRIES?.find(c => c.iso2 === 'es') || null)
+    } else if (lang === "us") {
+      setCountrySelected(COUNTRIES?.find(c => c.iso2 === 'us') || null)
+    }
+  }, [COUNTRIES, lang])
 
   useEffect(() => {
     if (countrySelected?.iso2 !== 'br') {
