@@ -1,9 +1,6 @@
 import React from "react";
 import { PhoneInput } from "react-international-phone";
 
-// Styles
-import 'react-international-phone/style.css';
-
 // Types
 import { IInputCellPhoneProps } from "./types";
 
