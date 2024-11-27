@@ -52,7 +52,7 @@ export function getCountries(origin: string  = 'pt') {
     }
     
 
-    console.log('allCountries',allCountries)
+    // console.log('allCountries',allCountries)
 
     return allCountries;
   } catch (error) {

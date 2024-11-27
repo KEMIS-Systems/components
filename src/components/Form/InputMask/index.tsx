@@ -28,7 +28,7 @@ function InputMask({
   name,
   label,
   className,
-  i18N = false,
+  i18N,
   lang = 'pt',
   mask,
   ...props
@@ -40,10 +40,10 @@ function InputMask({
   // AUX Variables
   const COUNTRY_SELECTED_ELEMENT_REF = useRef<any>()
   const COUNTRIES = useMemo(() => {
-    const SEARCH_VALUE =  searchCountry?.trim()?.toLocaleLowerCase() || null
-    const COUNTRIES =  getCountries(lang) || []
+    const SEARCH_VALUE = searchCountry?.trim()?.toLocaleLowerCase() || null
+    const COUNTRIES = getCountries(lang) || []
 
-    if(SEARCH_VALUE) {
+    if (SEARCH_VALUE) {
       return COUNTRIES.filter(d => d.dialCode.includes(SEARCH_VALUE) || d.iso2InLower.includes(SEARCH_VALUE) || d.nameInLower.includes(SEARCH_VALUE))
     }
 
@@ -51,9 +51,9 @@ function InputMask({
   }, [searchCountry])
   const INPUT_MASK = useMemo(() => {
 
-    if(countrySelected?.iso2 === 'br') return mask;
+    if (countrySelected?.iso2 === 'br') return mask;
 
-    switch(countrySelected?.dialCode.length) {
+    switch (countrySelected?.dialCode.length) {
       case 3:
         return '+?*?*?*? *?*?*?*?*?*?*?*?*?*?*?*';
       case 2:
@@ -73,14 +73,14 @@ function InputMask({
   }, [COUNTRIES])
 
   useEffect(() => {
-    if(countrySelected?.iso2 !== 'br') {
+    if (countrySelected?.iso2 !== 'br') {
       form.setValue(name, `+${countrySelected?.dialCode || '55'}`)
     }
   }, [countrySelected])
 
   function handlerSetCountry(country: Country | null = null) {
     try {
-      if(!country || !COUNTRY_SELECTED_ELEMENT_REF.current) return;
+      if (!country || !COUNTRY_SELECTED_ELEMENT_REF.current) return;
 
       // @ts-ignore
       COUNTRY_SELECTED_ELEMENT_REF.current.click()
@@ -109,14 +109,9 @@ function InputMask({
                   {label}
                   <span data-isrequred={rules?.required && true} className="hidden data-[isrequired=true]:block text-slate-300"> *</span>
                 </label>
-                <span 
+                <span
                   data-hasI18N={i18N}
-                  className="w-full h-auto flex flex-row items-center justify-start gap-3                    
-                    data-[hasI18N=true]:p-4
-                    data-[hasI18N=true]:border-[1px]
-                    data-[hasI18N=true]:border-slate-300
-                    data-[hasI18N=true]:rounded-xl
-                  "
+                  className="w-full h-auto flex flex-row items-center justify-start gap-3"
                 >
                   <span
                     data-hasI18N={i18N}
@@ -127,10 +122,10 @@ function InputMask({
                       relative
                     "
                   >
-                    <input type="checkbox" 
+                    <input type="checkbox"
                       ref={COUNTRY_SELECTED_ELEMENT_REF}
-                      name="country-box-select" 
-                      id="country-box-select" 
+                      name="country-box-select"
+                      id="country-box-select"
                       className="peer/CountryBox hidden"
                     />
 
@@ -152,9 +147,9 @@ function InputMask({
                       {countrySelected?.flagEmoji}
                     </button>
 
-                    <div className="min-w-28 w-auto h-0
+                    <div className="min-w-full w-auto h-0
                         absolute
-                        top-10
+                        -top-1
                         left-0
                         rounded-xl
                         border-[1px]
@@ -164,6 +159,7 @@ function InputMask({
                         opacity-0
                         z-[-1]
                         pointer-events-none
+                        peer-checked/CountryBox:left-12
                         peer-checked/CountryBox:opacity-100
                         peer-checked/CountryBox:z-[999]
                         peer-checked/CountryBox:pointer-events-auto
@@ -181,14 +177,14 @@ function InputMask({
                       >
                         <MdSearch className="text-slate-300" />
                         <input
-                          type="text" 
+                          type="text"
                           className="border-0 bg-transparent"
                           onChange={(e) => debounce(250, setSearchCountry, e.target.value)}
                           placeholder={countrySelected?.searchPlaceholder || 'Pesquise por pais'}
                         />
                       </span>
 
-                      <ul className="m-0 flex-1 flex flex-col gap-4 overflow-y-auto px-3 pb-3">
+                      <ul className="m-0 flex-1 flex flex-col gap-2 overflow-y-auto px-3 pb-3">
                         {
                           COUNTRIES?.map(country => (
                             <li
@@ -198,7 +194,7 @@ function InputMask({
                               key={country.iso2}
                               data-hasselected={countrySelected?.iso2 === country.iso2}
                               className="w-full h-auto p-3 
-                                flex flex-row items-center gap-3
+                                flex flex-row items-center justify-start gap-3
                                 rounded-xl
                                 data-[hasselected=false]:hover:bg-slate-100
                                 data-[hasselected=true]:bg-slate-100
@@ -209,10 +205,10 @@ function InputMask({
                               <span>
                                 {country.flagEmoji}
                               </span>
-                              <span>
+                              <span className="self-start">
                                 {country.name}
                               </span>
-                              <span className="text-slate-200 ml-4 text-sm">
+                              <span className="flex-1 flex justify-end items-center text-slate-200 ml-4 text-sm">
                                 +{country.dialCode}
                               </span>
                             </li>
