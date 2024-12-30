@@ -14,13 +14,20 @@ export default function InputCellPhone({ form, name, lang = 'br', label }: IInpu
                 defaultCountry={lang}
                 value={form.getValues()[name] || ''}
                 onChange={(phone, meta) => form.setValue(name, meta.inputValue)}
-                className="h-[50px]"
+                className="!h-[50px]"
                 countrySelectorStyleProps={{
                     className: '!h-[50px]',
                     buttonStyle: {
                         height: '50px',
                         padding: '16px',
                     },
+                    dropdownStyleProps: {
+                        style: {
+                            paddingTop: '8px',
+                            paddingLeft: '16px',
+                            paddingRight: '16px'
+                        }
+                    }
                 }}
                 inputClassName="w-full !h-full"
             />

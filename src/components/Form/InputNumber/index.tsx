@@ -78,7 +78,11 @@ const InputNumber = <T extends object>({
                   className='block data-[haserror=true]:text-red-500'
                 >
                   {label}
-                  <span data-isrequired={rules?.required && true} className="hidden data-[isrequired=true]:flex text-slate-300"> *</span>                  
+                  {rules?.required ? (
+                    <span className="text-slate-300"> *</span>
+                  ) : (
+                    ""
+                  )}
                 </label>
                 <InputStyles>
                   <div data-hasbutton={handleAddButton && true} className={`${handleAddButton && "p-inputgroup"}`}>

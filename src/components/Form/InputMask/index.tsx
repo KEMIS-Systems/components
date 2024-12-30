@@ -116,7 +116,11 @@ function InputMask({
                   className="block data-[haserror=true]:text-red-500"
                 >
                   {label}
-                  <span data-isrequred={rules?.required && true} className="hidden data-[isrequired=true]:block text-slate-300"> *</span>
+                  {rules?.required ? (
+                  <span className="text-slate-300"> *</span>
+                  ) : (
+                    ""
+                  )}
                 </label>
                 <span
                   data-hasI18N={i18N}
