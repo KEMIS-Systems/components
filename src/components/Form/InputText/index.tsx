@@ -1,6 +1,6 @@
 import { InputText as InputTextPrime } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import React from "react";
+import React, { ReactElement } from "react";
 import {
   Controller,
   FieldPath,
@@ -32,6 +32,7 @@ interface IProps<T extends FieldValues>
   placeholder?: string;
   disabled?: boolean;
   inputStyle?: string | null;
+  child?: ReactElement
 }
 
 const InputText = <T extends object>({
@@ -42,6 +43,7 @@ const InputText = <T extends object>({
   rules,
   autoFocus,
   form,
+  child,
   placeholder,
   disabled,
   inputStyle,
@@ -70,25 +72,30 @@ const InputText = <T extends object>({
                     ""
                   )}
                 </label>
-                <InputTextPrime
-                  {...field}
-                  ref={ref}
-                  id={field.name}
-                  type={type ?? "text"}
-                  autoFocus={autoFocus}
-                  className={`${classNames({
-                    "p-invalid ": fieldState.error,
-                  })} w-full disabled:bg-slate-100 ${inputStyle}`}
-                  disabled={disabled}
-                  placeholder={placeholder ?? undefined}
-                  {...rest}
-                />
+                <div className="flex flex-row items-center justify-start gap-2">
+                  <InputTextPrime
+                    {...field}
+                    ref={ref}
+                    id={field.name}
+                    type={type ?? "text"}
+                    autoFocus={autoFocus}
+                    className={`${classNames({
+                      "p-invalid ": fieldState.error,
+                    })} w-full disabled:bg-slate-100 ${inputStyle}`}
+                    disabled={disabled}
+                    placeholder={placeholder ?? undefined}
+                    {...rest}
+                  />
+                  {
+                    child && <>{child}</>
+                  }
+                </div>
                 {<MessageError fieldState={fieldState} />}
               </>
             );
           }}
         />
-      )}
+      )}      
     </div>
   );
 };

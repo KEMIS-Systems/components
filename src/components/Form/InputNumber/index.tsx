@@ -4,7 +4,7 @@ import {
   InputNumberProps,
 } from "primereact/inputnumber";
 import { classNames } from "primereact/utils";
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import {
   Controller,
   FieldPath,
@@ -28,6 +28,7 @@ interface IProps<T extends FieldValues> extends Partial<InputNumberProps> {
   defaultMoney?: boolean;
   iconAddButton?: string;
   handleAddButton?: () => void;
+  child?: ReactElement
 }
 
 const InputNumber = <T extends object>({
@@ -39,6 +40,9 @@ const InputNumber = <T extends object>({
   currency,
   locale,
   form,
+
+  child,
+
   rules,
   disabled,
   iconAddButton,
@@ -85,7 +89,10 @@ const InputNumber = <T extends object>({
                   )}
                 </label>
                 <InputStyles>
-                  <div data-hasbutton={handleAddButton && true} className={`${handleAddButton && "p-inputgroup"}`}>
+                  <div 
+                    data-hasbutton={handleAddButton && true} 
+                    className={`flex flex-row items-center justify-start gap-2 ${handleAddButton && "p-inputgroup"}`}
+                  >
                     {/* @ts-ignore  @ts-nocheck */}
                     <InputNumberPrime
                       id={field.name}
@@ -113,6 +120,9 @@ const InputNumber = <T extends object>({
                         />
                       )
                     }
+                    {
+                      child && <>{child}</>
+                    }
                   </div>
                   {<MessageError fieldState={fieldState} />}
                 </InputStyles>
@@ -121,6 +131,7 @@ const InputNumber = <T extends object>({
           }}
         />
       )}
+     
     </div>
   );
 };
