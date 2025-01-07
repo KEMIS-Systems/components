@@ -61,8 +61,9 @@ const InputText = <T extends object>({
               <>
                 <label
                   htmlFor={field.name}
+                  data-hasdisabled={disabled}
                   className={
-                    classNames({ "text-red-400 ": fieldState.error }) + " block"
+                    classNames({ "text-red-400 ": fieldState.error }) + " block data-[hasdisabled=true]:text-slate-200"
                   }
                 >
                   {label}
@@ -72,7 +73,7 @@ const InputText = <T extends object>({
                     ""
                   )}
                 </label>
-                <div className="flex flex-row items-center justify-start gap-2">
+                <div className="flex flex-row items-center justify-start gap-2 [&_.p-inputtext]:disabled:bg-slate-100">
                   <InputTextPrime
                     {...field}
                     ref={ref}
@@ -82,6 +83,7 @@ const InputText = <T extends object>({
                     className={`${classNames({
                       "p-invalid ": fieldState.error,
                     })} w-full disabled:bg-slate-100 ${inputStyle}`}
+                    
                     disabled={disabled}
                     placeholder={placeholder ?? undefined}
                     {...rest}

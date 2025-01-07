@@ -79,7 +79,8 @@ const InputNumber = <T extends object>({
                 <label
                   htmlFor={field.name}
                   data-haserror={fieldState.error && true}
-                  className='block data-[haserror=true]:text-red-500'
+                  data-hasdisabled={disabled}
+                  className='block data-[haserror=true]:text-red-500 data-[hasdisabled=true]:text-slate-200'
                 >
                   {label}
                   {rules?.required ? (

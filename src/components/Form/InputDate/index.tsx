@@ -58,8 +58,9 @@ const InputDate = <T extends object>({
             <>
               <label
                 htmlFor={field.name}
+                data-hasdisabled={disabled}
                 className={
-                  classNames({ "text-red-400 ": fieldState.error }) + " block"
+                  classNames({ "text-red-400 ": fieldState.error }) + " block data-[hasdisabled=true]:text-slate-200"
                 }
               >
                 {label}
