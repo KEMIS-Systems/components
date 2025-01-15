@@ -29,7 +29,7 @@ export default function InputCellPhone({ form, name, lang = 'br', label }: IInpu
                         }
                     }
                 }}
-                inputClassName="w-full !h-[50px]"
+                inputClassName="w-full !min-h-[50px] !h-[50px] !max-h-[50px]"
             />
         </>
     )

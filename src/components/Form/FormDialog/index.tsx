@@ -24,6 +24,7 @@ interface IProps<T extends FieldValues> {
   maximizable?: boolean;
   classNameDialog?: string;
   children: React.ReactNode;
+  forwardback?: (data: Partial<T & K>) => unknown;
   hiddenSubmitButton?: boolean;
 }
 
@@ -58,6 +59,7 @@ const FormDialog = <T extends object>({
   maximizable,
   classNameDialog,
   children,
+  forwardback,
   hiddenSubmitButton,
 }: IProps<T>) => {
   const { language } = useLanguage();
@@ -112,6 +114,7 @@ const FormDialog = <T extends object>({
         getFormData={getFormData}
         onRefreshTable={onRefreshTable}
         form={form}
+        forwardback={forwardback}
       >
         {children}
       </Form>

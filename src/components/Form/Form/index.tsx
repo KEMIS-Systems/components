@@ -21,6 +21,7 @@ export interface IProps<T extends FieldValues> {
   getFormData?: (data: FieldValues) => FieldValues | FormData;
   form: UseFormReturn<T>;
   children: React.ReactNode;
+  forwardback?: (data: Partial<T & K>) => unknown;
 }
 
 /**
@@ -44,6 +45,7 @@ const Form = <T extends object>({
   onRefreshTable,
   onSubmit,
   getFormData,
+  forwardback,
   form,
   children,
 }: IProps<T>) => {
@@ -96,6 +98,10 @@ const Form = <T extends object>({
                       dataEdit?.uuid || dataEdit?.id ? "edit" : "add"
                     ]?.success,
                 });
+
+                if(forwardback && typeof forwardback === 'function') {
+                  forwardback(resolver.data)
+                }
               }
             );
           } catch (error: AxiosError | any) {
