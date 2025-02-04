@@ -146,9 +146,9 @@ export function SplitButton (props: ISplitButtonProps) {
                         props.dropListLabelClassName
                     )}
                 >
-                    {props.dropListIcon ?? (
-                        <BsThreeDotsVertical size={24} />
-                    )}
+                    {
+                        props.dropListIcon || ( <BsThreeDotsVertical size={24} />)
+                    }
                 </label>
                 <ul
                     ref={SPLIT_LIST_ELEMENT_REF}
