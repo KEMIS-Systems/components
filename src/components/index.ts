@@ -24,6 +24,7 @@ export { default as Dropdown } from "./Form/Dropdown";
 export { default as EditorHtml } from "./Form/EditorHtml";
 export { default as Form } from "./Form/Form";
 export { default as FormDialog } from "./Form/FormDialog";
+export { default as InputCellPhone } from "./Form/InputCellPhone";
 export { default as InputDate } from "./Form/InputDate";
 export { default as InputFile } from "./Form/InputFile";
 export { default as InputImage } from "./Form/InputImage";
@@ -37,7 +38,6 @@ export { default as ListBox } from "./Form/ListBox";
 export { default as MultiSelect } from "./Form/MultiSelect";
 export { default as RadioButton } from "./Form/RadioButton";
 export { default as SelectButton } from "./Form/SelectButton";
-export { default as InputCellPhone } from "./Form/InputCellPhone";
 
 // Loading:
 export { default as Loading } from "./Loading";
@@ -57,3 +57,6 @@ export { default as WriteSignature } from "./Signature/WriteSignature";
 
 // UploadPhoto:
 export { default as UploadPhoto } from "./UploadPhoto";
+
+export { SplitButton } from "./SplitButton";
+
