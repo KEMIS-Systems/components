@@ -116,7 +116,7 @@ export function SplitButton (props: ISplitButtonProps) {
                                 peer-checked/DropList:[&_ul]:opacity-100
                                 peer-checked/DropList:[&_ul]:pointer-events-auto
                                 peer-checked/DropList:[&_ul]:cursor-default
-                                peer-checked/DropList:[&_ul]:z-[999]
+                                peer-checked/DropList:[&_ul]:z-50
                             `,
                         props.className
                     )
@@ -160,14 +160,18 @@ export function SplitButton (props: ISplitButtonProps) {
                         twMerge(
                             `
                                 spl-btn-droplist
-                                w-[175px]
-                                min-h-[35px] h-auto
+                                min-w-[175px]
+                                w-[max-content]
+                                min-h-[35px] 
+                                max-h-[235px]
+                                overflow-y-auto
+                                h-auto
                                 rounded-lg
                                 bg-white 
                                 border-[1px]
                                 border-gray-300
                                 shadow-md
-                                py-2
+                                p-2
                                 flex
                                 flex-col
                                 gap-4
@@ -178,12 +182,12 @@ export function SplitButton (props: ISplitButtonProps) {
                                 duration-[0.15s]
                                 z-[-1]
                                 right-0
-                                -top-[43px]
+                                top-[40px]
 
-                                data-[onleft=false]:data-[onright=true]:-right-[87.2px]
-                                data-[onright=false]:data-[onleft=true]:-left-[87.2px]
+                                data-[onleft=false]:data-[onright=true]:-right-[100%]
+                                data-[onright=false]:data-[onleft=true]:-left-[100%]
                                 
-                                data-[onbottom=false]:data-[ontop=true]:-top-[43px]
+                                data-[onbottom=false]:data-[ontop=true]:-top-[44px]
                                 data-[ontop=false]:data-[onbottom=true]:top-[43px]
 
                                 

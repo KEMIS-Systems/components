@@ -1,6 +1,5 @@
 import { AutoComplete as AutoCompletePrime } from "primereact/autocomplete";
 import { Button as ButtonPrime } from "primereact/button";
-import { SelectItemOptionsType } from "primereact/selectitem";
 import { classNames } from "primereact/utils";
 import React from "react";
 import {
@@ -16,7 +15,7 @@ interface IProps<T extends FieldValues> {
   className?: string;
   name: FieldPath<T>;
   label: string;
-  suggestions: SelectItemOptionsType;
+  suggestions: string[];
   rules?: RegisterOptions;
   autoFocus?: boolean;
   form: UseFormReturn<T>;
